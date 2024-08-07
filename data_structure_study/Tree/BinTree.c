@@ -122,7 +122,7 @@ BinTree Pop(Stack S)
 ///////////////////////树的函数////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
 //直接创建树
-BinTree CreateBiTree(BinTree T)
+BinTree CreateBinTreeDirectly(BinTree T)
 {
     T = (BinTree)malloc(sizeof(struct BNode));
     (T)->data = 1;
@@ -151,7 +151,7 @@ BinTree CreateBiTree(BinTree T)
 }
 void initBinTree(BinTree BT)
 {
-    BinTree BT = (BinTree)malloc(sizeof(struct BNode));
+    BT = (BinTree)malloc(sizeof(struct BNode));
     BT->data=999;
     BT->Left = NULL;
     BT->Right = NULL;
@@ -400,8 +400,25 @@ BinTree BSTInsert(BinTree BST, int X)
 int main()
 {
     BinTree BT;
-    initBinTree(BT);
-    printf("%d",BT->data);
+    BinTree T;
+    BT=CreateBinTreeDirectly(BT);
+    Queue Q;
+    Q = createQueue(Q);
+    AddQ(Q, BT); //根节点入队
+    while (Q->rear != Q->front)
+    {
+        T = DeleteQ(Q);
+        printf("%d", T->data);
+        if (T->Left)
+        {
+            AddQ(Q, T->Left);
+        }
+        if (T->Right)
+        {
+            AddQ(Q, T->Right);
+        }
+    }
+    
     //BT = CreateBiTree(BT);
     //printf("%d", getHeight(BT));
    
